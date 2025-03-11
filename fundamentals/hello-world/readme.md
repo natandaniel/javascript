@@ -1,5 +1,3 @@
-# JavaScript Fundamentals
-
 ## The `<script>` Tag
 
 The `<script>` tag is used to embed or reference JavaScript code within an HTML document. It is automatically executed when the browser processes the tag.
