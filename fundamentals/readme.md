@@ -44,6 +44,12 @@
    - [9.4 Comparison of Different Types](#94-comparison-of-different-types)
    - [9.5 Comparison with `null` and `undefined`](#95-comparison-with-null-and-undefined)
    - [9.6 Avoiding Pitfalls](#96-avoiding-pitfalls)
+10. [Conditional Branching: if, '?'](#10-conditional-branching-if-)
+    - [10.1 The `if` Statement](#101-the-if-statement)
+    - [10.2 The `else` Clause](#102-the-else-clause)
+    - [10.3 Several Conditions: `else if`](#103-several-conditions-else-if)
+    - [10.4 Conditional Operator `?`](#104-conditional-operator-)
+    - [10.5 Non-traditional Use of `?`](#105-non-traditional-use-of-)
 
 ## 1. The `<script>` Tag
 
@@ -457,3 +463,72 @@ JavaScript provides several operators to compare values, returning a boolean res
 - Use strict equality (`===`) to avoid unexpected type conversions.
 
 These comparison operators are essential for controlling the flow of logic in JavaScript programs, allowing for conditional execution based on value comparisons.
+
+## 10. Conditional Branching: if, '?'
+
+JavaScript provides structures to perform different actions based on conditions.
+
+### 10.1 The `if` Statement
+
+- **Syntax**: Evaluates a condition and executes a block of code if the condition is `true`.
+
+  ```javascript
+  if (condition) {
+    // code to execute if condition is true
+  }
+  ```
+
+- **Boolean Conversion**: The condition is converted to a boolean. Falsy values (`0`, `""`, `null`, `undefined`, `NaN`) become `false`; all others become `true`.
+
+### 10.2 The `else` Clause
+
+- **Syntax**: Executes a block of code if the `if` condition is `false`.
+  ```javascript
+  if (condition) {
+    // code if true
+  } else {
+    // code if false
+  }
+  ```
+
+### 10.3 Several Conditions: `else if`
+
+- **Syntax**: Allows testing multiple conditions.
+  ```javascript
+  if (condition1) {
+    // code if condition1 is true
+  } else if (condition2) {
+    // code if condition2 is true
+  } else {
+    // code if none are true
+  }
+  ```
+
+### 10.4 Conditional Operator `?`
+
+- **Syntax**: A shorthand for `if...else` that returns a value based on a condition.
+
+  ```javascript
+  let result = condition ? value1 : value2;
+  ```
+
+- **Multiple `?`**: Can be used for multiple conditions.
+  ```javascript
+  let message =
+    age < 3
+      ? "Hi, baby!"
+      : age < 18
+      ? "Hello!"
+      : age < 100
+      ? "Greetings!"
+      : "What an unusual age!";
+  ```
+
+### 10.5 Non-traditional Use of `?`
+
+- **Usage**: Can execute different code blocks, but not recommended for readability.
+  ```javascript
+  condition ? alert("True") : alert("False");
+  ```
+
+These structures are fundamental for controlling the flow of execution in JavaScript, allowing for dynamic and responsive code based on conditions.
