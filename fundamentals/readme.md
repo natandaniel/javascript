@@ -28,6 +28,22 @@
    - [7.1 String Conversion](#71-string-conversion)
    - [7.2 Numeric Conversion](#72-numeric-conversion)
    - [7.3 Boolean Conversion](#73-boolean-conversion)
+8. [Operators](#8-operators)
+   - [8.1 Basic Math Operators](#81-basic-math-operators)
+   - [8.2 String Concatenation](#82-string-concatenation)
+   - [8.3 Unary Operators](#83-unary-operators)
+   - [8.4 Operator Precedence](#84-operator-precedence)
+   - [8.5 Increment/Decrement](#85-incrementdecrement)
+   - [8.6 Assignment Operators](#86-assignment-operators)
+   - [8.7 Comma Operator](#87-comma-operator)
+   - [8.8 Bitwise Operators](#88-bitwise-operators)
+9. [Comparisons](#9-comparisons)
+   - [9.1 Basic Comparison Operators](#91-basic-comparison-operators)
+   - [9.2 Strict Equality](#92-strict-equality)
+   - [9.3 String Comparison](#93-string-comparison)
+   - [9.4 Comparison of Different Types](#94-comparison-of-different-types)
+   - [9.5 Comparison with `null` and `undefined`](#95-comparison-with-null-and-undefined)
+   - [9.6 Avoiding Pitfalls](#96-avoiding-pitfalls)
 
 ## 1. The `<script>` Tag
 
@@ -313,3 +329,131 @@ JavaScript often automatically converts values to the expected type, but explici
   - All other values become `true`.
 
 These conversions are fundamental to JavaScript's dynamic typing and are essential for handling different data types effectively.
+
+## 8. Operators
+
+JavaScript supports a variety of operators for performing calculations and operations on data.
+
+### 8.1 Basic Math Operators
+
+- **Addition (`+`)**: Adds numbers or concatenates strings.
+- **Subtraction (`-`)**: Subtracts one number from another.
+- **Multiplication (`*`)**: Multiplies numbers.
+- **Division (`/`)**: Divides numbers.
+- **Remainder (`%`)**: Returns the remainder of a division.
+- **Exponentiation (`**`)\*\*: Raises a number to the power of another.
+
+### 8.2 String Concatenation
+
+- The `+` operator can concatenate strings. If either operand is a string, the other is converted to a string.
+  ```javascript
+  let s = "Hello, " + "world!"; // "Hello, world!"
+  ```
+
+### 8.3 Unary Operators
+
+- **Unary Plus (`+`)**: Converts a value to a number.
+
+  ```javascript
+  let x = +"123"; // 123
+  ```
+
+- **Unary Negation (`-`)**: Converts a value to a number and negates it.
+  ```javascript
+  let y = -"123"; // -123
+  ```
+
+### 8.4 Operator Precedence
+
+- Operators have a defined precedence that determines the order of operations in expressions.
+- Parentheses can be used to override precedence.
+  ```javascript
+  let result = (1 + 2) * 3; // 9
+  ```
+
+### 8.5 Increment/Decrement
+
+- **Increment (`++`)**: Increases a number by one.
+
+  - **Prefix (`++x`)**: Increments and returns the new value.
+  - **Postfix (`x++`)**: Returns the current value, then increments.
+
+  ```javascript
+  let counter = 1;
+  let a = ++counter; // a = 2, counter = 2
+  let b = counter++; // b = 2, counter = 3
+  ```
+
+- **Decrement (`--`)**: Decreases a number by one.
+  - **Prefix (`--x`)**: Decrements and returns the new value.
+  - **Postfix (`x--`)**: Returns the current value, then decrements.
+  ```javascript
+  let counter = 3;
+  let a = --counter; // a = 2, counter = 2
+  let b = counter--; // b = 2, counter = 1
+  ```
+
+### 8.6 Assignment Operators
+
+- **Assignment (`=`)**: Assigns a value to a variable.
+- **Modify-in-place**: Combines an operation with assignment, e.g., `+=`, `-=`, `*=`, `/=`.
+  ```javascript
+  let a = 2;
+  a += 3; // 5
+  ```
+
+### 8.7 Comma Operator
+
+- Evaluates multiple expressions and returns the result of the last one.
+  ```javascript
+  let a = (1 + 2, 3 + 4); // 7
+  ```
+
+### 8.8 Bitwise Operators
+
+- **AND (`&`)**, **OR (`|`)**, **XOR (`^`)**, **NOT (`~`)**: Perform bitwise operations on 32-bit integers.
+- **Left Shift (`<<`)**, **Right Shift (`>>`)**, **Zero-fill Right Shift (`>>>`)**: Shift bits in a number.
+
+These operators are fundamental to performing calculations and manipulating data in JavaScript, providing both basic arithmetic and more complex operations.
+
+## 9. Comparisons
+
+JavaScript provides several operators to compare values, returning a boolean result.
+
+### 9.1 Basic Comparison Operators
+
+- **Greater than (`>`)**: Checks if the left operand is greater than the right.
+- **Less than (`<`)**: Checks if the left operand is less than the right.
+- **Greater than or equal to (`>=`)**: Checks if the left operand is greater than or equal to the right.
+- **Less than or equal to (`<=`)**: Checks if the left operand is less than or equal to the right.
+- **Equality (`==`)**: Checks if two values are equal, with type conversion.
+- **Inequality (`!=`)**: Checks if two values are not equal, with type conversion.
+
+### 9.2 Strict Equality
+
+- **Strict Equality (`===`)**: Checks if two values are equal without type conversion.
+- **Strict Inequality (`!==`)**: Checks if two values are not equal without type conversion.
+
+### 9.3 String Comparison
+
+- Strings are compared lexicographically, character by character, based on Unicode values.
+
+### 9.4 Comparison of Different Types
+
+- When comparing values of different types, JavaScript converts them to numbers.
+  ```javascript
+  alert("2" > 1); // true
+  alert("01" == 1); // true
+  ```
+
+### 9.5 Comparison with `null` and `undefined`
+
+- `null` and `undefined` are equal to each other (`null == undefined`) but not to any other value.
+- Comparisons with `null` and `undefined` convert them to numbers: `null` becomes `0`, `undefined` becomes `NaN`.
+
+### 9.6 Avoiding Pitfalls
+
+- Be cautious with comparisons involving `null` and `undefined`.
+- Use strict equality (`===`) to avoid unexpected type conversions.
+
+These comparison operators are essential for controlling the flow of logic in JavaScript programs, allowing for conditional execution based on value comparisons.
