@@ -24,6 +24,10 @@
    - [6.2 Prompt](#62-prompt)
    - [6.3 Confirm](#63-confirm)
    - [6.4 Characteristics](#64-characteristics)
+7. [Type Conversions](#7-type-conversions)
+   - [7.1 String Conversion](#71-string-conversion)
+   - [7.2 Numeric Conversion](#72-numeric-conversion)
+   - [7.3 Boolean Conversion](#73-boolean-conversion)
 
 ## 1. The `<script>` Tag
 
@@ -261,3 +265,51 @@ JavaScript provides three functions to interact with users via modal windows: `a
 - **Browser-Dependent**: The appearance and exact positioning of these windows are determined by the browser and cannot be customized.
 
 These functions are simple and effective for basic user interactions, though more advanced UI elements can be created with HTML/CSS and JavaScript for richer experiences.
+
+## 7. Type Conversions
+
+JavaScript often automatically converts values to the expected type, but explicit conversions can be performed when needed.
+
+### 7.1 String Conversion
+
+- **Purpose**: Converts a value to a string.
+- **Usage**: Automatically occurs in contexts like `alert(value)`.
+- **Explicit Conversion**: Use `String(value)`.
+  ```javascript
+  let value = true;
+  value = String(value); // "true"
+  ```
+
+### 7.2 Numeric Conversion
+
+- **Purpose**: Converts a value to a number.
+- **Usage**: Automatically occurs in mathematical operations.
+- **Explicit Conversion**: Use `Number(value)`.
+
+  ```javascript
+  let str = "123";
+  let num = Number(str); // 123
+  ```
+
+- **Conversion Rules**:
+  - `undefined` becomes `NaN`.
+  - `null` becomes `0`.
+  - `true` becomes `1`, `false` becomes `0`.
+  - Strings are trimmed; if empty, they become `0`. Invalid strings become `NaN`.
+
+### 7.3 Boolean Conversion
+
+- **Purpose**: Converts a value to a boolean.
+- **Usage**: Automatically occurs in logical contexts.
+- **Explicit Conversion**: Use `Boolean(value)`.
+
+  ```javascript
+  Boolean(1); // true
+  Boolean(0); // false
+  ```
+
+- **Conversion Rules**:
+  - `0`, `null`, `undefined`, `NaN`, and `""` become `false`.
+  - All other values become `true`.
+
+These conversions are fundamental to JavaScript's dynamic typing and are essential for handling different data types effectively.
