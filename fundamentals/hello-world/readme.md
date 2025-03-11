@@ -1,10 +1,35 @@
 # JavaScript Fundamentals
 
-## The `<script>` Tag
+## Table of Contents
+
+1. [The `<script>` Tag](#1-the-script-tag)
+   - [1.1 Key Points](#11-key-points)
+   - [1.2 Placement in HTML](#12-placement-in-html)
+2. [Code Structure](#2-code-structure)
+   - [2.1 Statements](#21-statements)
+   - [2.2 Semicolons](#22-semicolons)
+   - [2.3 Comments](#23-comments)
+3. ["use strict" Mode](#3-use-strict-mode)
+   - [3.1 Key Points](#31-key-points)
+4. [Variables and Constants](#4-variables-and-constants)
+   - [4.1 Variables](#41-variables)
+   - [4.2 Constants](#42-constants)
+   - [4.3 Best Practices](#43-best-practices)
+5. [Data Types](#5-data-types)
+   - [5.1 Primitive Types](#51-primitive-types)
+   - [5.2 Non-Primitive Type](#52-non-primitive-type)
+   - [5.3 The `typeof` Operator](#53-the-typeof-operator)
+6. [User Interaction: Alert, Prompt, and Confirm](#6-user-interaction-alert-prompt-and-confirm)
+   - [6.1 Alert](#61-alert)
+   - [6.2 Prompt](#62-prompt)
+   - [6.3 Confirm](#63-confirm)
+   - [6.4 Characteristics](#64-characteristics)
+
+## 1. The `<script>` Tag
 
 The `<script>` tag is used to embed or reference JavaScript code within an HTML document. It is automatically executed when the browser processes the tag.
 
-### Key Points
+### 1.1 Key Points
 
 - **Inline Scripts**: JavaScript code can be written directly within the `<script>` tag.
 
@@ -25,7 +50,7 @@ The `<script>` tag is used to embed or reference JavaScript code within an HTML 
   - `type`: Historically used to specify the scripting language, but is no longer necessary for JavaScript.
   - `async` and `defer`: Control the loading and execution of external scripts.
 
-### Placement in HTML
+### 1.2 Placement in HTML
 
 - **Head Section**: Scripts that need to be loaded before the page content can be placed in the `<head>` section. Use the `defer` attribute to ensure they execute after the document is parsed.
 
@@ -43,28 +68,28 @@ The `<script>` tag is used to embed or reference JavaScript code within an HTML 
   </body>
   ```
 
-## Code Structure
+## 2. Code Structure
 
-### Statements
+### 2.1 Statements
 
 - JavaScript code is composed of statements, which are commands that perform actions.
 - Statements can be separated by semicolons, though line breaks often suffice.
 
-### Semicolons
+### 2.2 Semicolons
 
 - Semicolons are optional in many cases due to automatic semicolon insertion, but using them consistently can prevent errors.
 
-### Comments
+### 2.3 Comments
 
 - **Single-line comments**: Start with `//` and extend to the end of the line.
 - **Multi-line comments**: Enclosed between `/*` and `*/`.
 - Comments are ignored by the JavaScript engine and are useful for explaining code.
 
-## "use strict" Mode
+## 3. "use strict" Mode
 
 The `"use strict"` directive enables modern JavaScript features and stricter parsing and error handling of your code. It helps catch common coding errors and "unsafe" actions, such as assigning values to undeclared variables.
 
-### Key Points
+### 3.1 Key Points
 
 - **Enabling Strict Mode**: Place `"use strict";` at the top of your script or function to enable strict mode.
 
@@ -90,11 +115,11 @@ The `"use strict"` directive enables modern JavaScript features and stricter par
 
 Using `"use strict"` is recommended for scripts to ensure cleaner and more reliable code, especially in older codebases or when not using modules or classes.
 
-## Variables and Constants
+## 4. Variables and Constants
 
 In JavaScript, variables are used to store data that can be manipulated and retrieved throughout a program.
 
-### Variables
+### 4.1 Variables
 
 - **Declaration**: Use `let` to declare a variable.
 
@@ -121,7 +146,7 @@ In JavaScript, variables are used to store data that can be manipulated and retr
 
 - **`var` Keyword**: An older way to declare variables, similar to `let`, but with different scoping rules.
 
-### Constants
+### 4.2 Constants
 
 - **Declaration**: Use `const` to declare a constant, which is a variable that cannot be reassigned.
 
@@ -134,16 +159,16 @@ In JavaScript, variables are used to store data that can be manipulated and retr
   const COLOR_RED = "#F00";
   ```
 
-### Best Practices
+### 4.3 Best Practices
 
 - **Descriptive Names**: Choose clear and descriptive names for variables to improve code readability.
 - **Avoid Reuse**: Do not reuse variables for different purposes to prevent confusion and errors.
 
-## Data Types
+## 5. Data Types
 
 JavaScript has eight basic data types, divided into primitive and non-primitive types.
 
-### Primitive Types
+### 5.1 Primitive Types
 
 1. **Number**: Represents both integer and floating-point numbers. Special numeric values include `Infinity`, `-Infinity`, and `NaN`.
 
@@ -184,14 +209,55 @@ JavaScript has eight basic data types, divided into primitive and non-primitive 
 
 7. **Symbol**: Used to create unique identifiers for objects.
 
-### Non-Primitive Type
+### 5.2 Non-Primitive Type
 
 - **Object**: Used for collections of data and more complex entities.
 
-### The `typeof` Operator
+### 5.3 The `typeof` Operator
 
 - Returns the type of a value as a string.
   ```javascript
   typeof 123; // "number"
   typeof "Hello"; // "string"
   ```
+
+## 6. User Interaction: Alert, Prompt, and Confirm
+
+JavaScript provides three functions to interact with users via modal windows: `alert`, `prompt`, and `confirm`.
+
+### 6.1 Alert
+
+- **Purpose**: Displays a message to the user.
+- **Usage**: The user must click "OK" to dismiss the message.
+  ```javascript
+  alert("Hello");
+  ```
+
+### 6.2 Prompt
+
+- **Purpose**: Asks the user to input text.
+- **Syntax**: `result = prompt(title, [default]);`
+  - `title`: The message displayed to the user.
+  - `default`: (Optional) Initial value for the input field.
+- **Returns**: The input text or `null` if canceled.
+  ```javascript
+  let age = prompt("How old are you?", 100);
+  alert(`You are ${age} years old!`);
+  ```
+
+### 6.3 Confirm
+
+- **Purpose**: Asks the user to confirm an action.
+- **Syntax**: `result = confirm(question);`
+- **Returns**: `true` if "OK" is pressed, `false` if "Cancel" is pressed.
+  ```javascript
+  let isBoss = confirm("Are you the boss?");
+  alert(isBoss); // true if OK is pressed
+  ```
+
+### 6.4 Characteristics
+
+- **Modal Windows**: These functions create modal windows that pause script execution and prevent interaction with the rest of the page until dismissed.
+- **Browser-Dependent**: The appearance and exact positioning of these windows are determined by the browser and cannot be customized.
+
+These functions are simple and effective for basic user interactions, though more advanced UI elements can be created with HTML/CSS and JavaScript for richer experiences.
