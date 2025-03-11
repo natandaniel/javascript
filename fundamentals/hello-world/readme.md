@@ -138,3 +138,60 @@ In JavaScript, variables are used to store data that can be manipulated and retr
 
 - **Descriptive Names**: Choose clear and descriptive names for variables to improve code readability.
 - **Avoid Reuse**: Do not reuse variables for different purposes to prevent confusion and errors.
+
+## Data Types
+
+JavaScript has eight basic data types, divided into primitive and non-primitive types.
+
+### Primitive Types
+
+1. **Number**: Represents both integer and floating-point numbers. Special numeric values include `Infinity`, `-Infinity`, and `NaN`.
+
+   ```javascript
+   let n = 123;
+   n = 12.345;
+   ```
+
+2. **BigInt**: Used for integers of arbitrary length, created by appending `n` to the end of an integer.
+
+   ```javascript
+   const bigInt = 1234567890123456789012345678901234567890n;
+   ```
+
+3. **String**: Textual data enclosed in quotes. Backticks allow embedding expressions.
+
+   ```javascript
+   let str = `Hello, ${name}!`;
+   ```
+
+4. **Boolean**: Logical type with two values: `true` and `false`.
+
+   ```javascript
+   let isTrue = true;
+   ```
+
+5. **Null**: Represents "nothing" or "unknown".
+
+   ```javascript
+   let age = null;
+   ```
+
+6. **Undefined**: Indicates a variable has been declared but not assigned a value.
+
+   ```javascript
+   let x;
+   ```
+
+7. **Symbol**: Used to create unique identifiers for objects.
+
+### Non-Primitive Type
+
+- **Object**: Used for collections of data and more complex entities.
+
+### The `typeof` Operator
+
+- Returns the type of a value as a string.
+  ```javascript
+  typeof 123; // "number"
+  typeof "Hello"; // "string"
+  ```
