@@ -89,3 +89,52 @@ The `"use strict"` directive enables modern JavaScript features and stricter par
 - **Automatic in Modules/Classes**: Modern JavaScript modules and classes automatically enable strict mode, so the directive is not needed in those contexts.
 
 Using `"use strict"` is recommended for scripts to ensure cleaner and more reliable code, especially in older codebases or when not using modules or classes.
+
+## Variables and Constants
+
+In JavaScript, variables are used to store data that can be manipulated and retrieved throughout a program.
+
+### Variables
+
+- **Declaration**: Use `let` to declare a variable.
+
+  ```javascript
+  let message;
+  message = "Hello";
+  ```
+
+- **Initialization**: Variables can be declared and initialized in one line.
+
+  ```javascript
+  let message = "Hello!";
+  ```
+
+- **Multiple Declarations**: Avoid declaring multiple variables in one line for better readability.
+
+  ```javascript
+  let user = "John";
+  let age = 25;
+  let message = "Hello";
+  ```
+
+- **Naming Rules**: Variable names can include letters, digits, `$`, and `_`, but must not start with a digit. Use camelCase for multi-word names.
+
+- **`var` Keyword**: An older way to declare variables, similar to `let`, but with different scoping rules.
+
+### Constants
+
+- **Declaration**: Use `const` to declare a constant, which is a variable that cannot be reassigned.
+
+  ```javascript
+  const myBirthday = "18.04.1982";
+  ```
+
+- **Uppercase Constants**: Use uppercase letters for constants that are hard-coded and known before execution.
+  ```javascript
+  const COLOR_RED = "#F00";
+  ```
+
+### Best Practices
+
+- **Descriptive Names**: Choose clear and descriptive names for variables to improve code readability.
+- **Avoid Reuse**: Do not reuse variables for different purposes to prevent confusion and errors.
