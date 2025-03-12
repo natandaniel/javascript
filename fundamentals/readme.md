@@ -532,3 +532,55 @@ JavaScript provides structures to perform different actions based on conditions.
   ```
 
 These structures are fundamental for controlling the flow of execution in JavaScript, allowing for dynamic and responsive code based on conditions.
+
+## 11. Logical Operators
+
+JavaScript provides several logical operators that can be used with values of any type, not just booleans.
+
+### 11.1 OR (`||`)
+
+- **Functionality**: Returns the first truthy value or the last value if none are truthy.
+
+  ```javascript
+  let result = value1 || value2 || value3;
+  ```
+
+- **Short-circuit Evaluation**: Stops evaluating as soon as a truthy value is found.
+  ```javascript
+  let hour = 9;
+  if (hour < 10 || hour > 18) {
+    alert("The office is closed.");
+  }
+  ```
+
+### 11.2 AND (`&&`)
+
+- **Functionality**: Returns the first falsy value or the last value if all are truthy.
+
+  ```javascript
+  let result = value1 && value2 && value3;
+  ```
+
+- **Short-circuit Evaluation**: Stops evaluating as soon as a falsy value is found.
+  ```javascript
+  let hour = 12;
+  let minute = 30;
+  if (hour == 12 && minute == 30) {
+    alert("The time is 12:30");
+  }
+  ```
+
+### 11.3 NOT (`!`)
+
+- **Functionality**: Converts the operand to a boolean and returns the inverse.
+
+  ```javascript
+  let result = !value;
+  ```
+
+- **Double NOT (`!!`)**: Converts a value to a boolean.
+  ```javascript
+  alert(!!"non-empty string"); // true
+  ```
+
+These logical operators are essential for controlling the flow of logic in JavaScript, allowing for complex conditions and decision-making processes.
