@@ -75,6 +75,11 @@
     - [15.4 Default Values](#154-default-values)
     - [15.5 Returning a Value](#155-returning-a-value)
     - [15.6 Function Naming](#156-function-naming)
+16. [Function Expressions](#16-function-expressions)
+    - [16.1 Function Expression Syntax](#161-function-expression-syntax)
+    - [16.2 Functions as Values](#162-functions-as-values)
+    - [16.3 Callback Functions](#163-callback-functions)
+    - [16.4 Function Expression vs Function Declaration](#164-function-expression-vs-function-declaration)
 
 ## 1. The `<script>` Tag
 
@@ -911,3 +916,68 @@ Functions are the main building blocks of a program, allowing code to be reused 
 - **Common Prefixes**: Use prefixes like `get...`, `show...`, `check...` to indicate the function's purpose.
 
 Functions are essential for structuring code, reducing repetition, and improving readability and maintainability.
+
+## 16. Function Expressions
+
+In JavaScript, functions can be created using function expressions, which allow functions to be defined within expressions.
+
+### 16.1 Function Expression Syntax
+
+- **Syntax**: A function expression is created by assigning a function to a variable.
+
+  ```javascript
+  let sayHi = function () {
+    alert("Hello");
+  };
+  ```
+
+- **Anonymous Functions**: Function expressions can be anonymous, meaning they do not have a name.
+
+### 16.2 Functions as Values
+
+- **Function as a Value**: Functions are treated as values, meaning they can be assigned to variables, passed as arguments, and returned from other functions.
+  ```javascript
+  let func = sayHi;
+  func(); // Hello
+  ```
+
+### 16.3 Callback Functions
+
+- **Callbacks**: Functions can be passed as arguments to other functions and called within them.
+
+  ```javascript
+  function ask(question, yes, no) {
+    if (confirm(question)) yes();
+    else no();
+  }
+
+  ask(
+    "Do you agree?",
+    function () {
+      alert("You agreed.");
+    },
+    function () {
+      alert("You canceled the execution.");
+    }
+  );
+  ```
+
+### 16.4 Function Expression vs Function Declaration
+
+- **Creation Timing**: Function expressions are created when the execution reaches them, while function declarations are hoisted and can be called before they appear in the code.
+
+  ```javascript
+  // Function Declaration
+  function sum(a, b) {
+    return a + b;
+  }
+
+  // Function Expression
+  let sum = function (a, b) {
+    return a + b;
+  };
+  ```
+
+- **Block Scope**: In strict mode, function declarations inside blocks are only visible within those blocks.
+
+Function expressions provide flexibility in defining functions, especially when functions need to be created conditionally or passed as arguments.
