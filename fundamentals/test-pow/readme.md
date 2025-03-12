@@ -19,6 +19,7 @@ This project is designed to test a JavaScript function `pow(x, n)` using the Moc
 2. **Chai Setup**: The Chai library is included, and its `assert` function is made globally available for use in the tests.
 
 3. **Function Under Test**: The `pow(x, n)` function is defined in the `index.html` file. It calculates \(x^n\) with the following conditions:
+
    - Returns `NaN` if \(n\) is negative or not an integer.
    - Uses a loop to multiply \(x\) by itself \(n\) times.
 
@@ -86,7 +87,3 @@ describe("pow", function () {
 ```
 
 Open `index.html` in a browser to see the test results.
-
-## Conclusion
-
-This setup provides a simple and effective way to test JavaScript functions using Mocha and Chai. By following the structure and instructions provided, you can easily implement and test the `pow` function or any other JavaScript function.
