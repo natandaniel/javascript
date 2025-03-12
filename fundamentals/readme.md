@@ -63,6 +63,11 @@
     - [13.2 The `do...while` Loop](#132-the-dowhile-loop)
     - [13.3 The `for` Loop](#133-the-for-loop)
     - [13.4 Breaking and Continuing](#134-breaking-and-continuing)
+14. [The `switch` Statement](#14-the-switch-statement)
+    - [14.1 Syntax](#141-syntax)
+    - [14.2 Example](#142-example)
+    - [14.3 Grouping of `case`](#143-grouping-of-case)
+    - [14.4 Type Matters](#144-type-matters)
 
 ## 1. The `<script>` Tag
 
@@ -719,3 +724,97 @@ Loops allow us to repeat actions multiple times, which is essential for tasks li
   ```
 
 These loop constructs are fundamental for controlling the flow of execution in JavaScript, allowing for efficient and flexible iteration over data.
+
+## 14. The `switch` Statement
+
+The `switch` statement provides a more descriptive way to compare a value against multiple variants, replacing multiple `if` checks.
+
+### 14.1 Syntax
+
+- **Structure**: Consists of one or more `case` blocks and an optional `default`.
+
+  ```javascript
+  switch (x) {
+    case "value1": // if (x === 'value1')
+      // code
+      break;
+
+    case "value2": // if (x === 'value2')
+      // code
+      break;
+
+    default:
+      // code
+      break;
+  }
+  ```
+
+- **Execution**: The value of `x` is compared using strict equality (`===`) with each `case`. If a match is found, the code executes from that `case` until a `break` is encountered or the `switch` ends.
+
+### 14.2 Example
+
+- **Basic Example**:
+
+  ```javascript
+  let a = 2 + 2;
+
+  switch (a) {
+    case 3:
+      alert("Too small");
+      break;
+    case 4:
+      alert("Exactly!");
+      break;
+    case 5:
+      alert("Too big");
+      break;
+    default:
+      alert("I don't know such values");
+  }
+  ```
+
+### 14.3 Grouping of `case`
+
+- **Multiple Cases**: Cases can be grouped to share the same code.
+
+  ```javascript
+  let a = 3;
+
+  switch (a) {
+    case 4:
+      alert("Right!");
+      break;
+
+    case 3:
+    case 5:
+      alert("Wrong!");
+      alert("Why don't you take a math class?");
+      break;
+
+    default:
+      alert("The result is strange. Really.");
+  }
+  ```
+
+### 14.4 Type Matters
+
+- **Strict Equality**: The comparison is strict, meaning the types must match.
+  ```javascript
+  let arg = prompt("Enter a value?");
+  switch (arg) {
+    case "0":
+    case "1":
+      alert("One or zero");
+      break;
+    case "2":
+      alert("Two");
+      break;
+    case 3:
+      alert("Never executes!");
+      break;
+    default:
+      alert("An unknown value");
+  }
+  ```
+
+The `switch` statement is useful for handling multiple conditions in a clean and organized manner, especially when dealing with multiple potential values for a single variable.
