@@ -68,6 +68,13 @@
     - [14.2 Example](#142-example)
     - [14.3 Grouping of `case`](#143-grouping-of-case)
     - [14.4 Type Matters](#144-type-matters)
+15. [Functions](#15-functions)
+    - [15.1 Function Declaration](#151-function-declaration)
+    - [15.2 Local and Outer Variables](#152-local-and-outer-variables)
+    - [15.3 Parameters and Arguments](#153-parameters-and-arguments)
+    - [15.4 Default Values](#154-default-values)
+    - [15.5 Returning a Value](#155-returning-a-value)
+    - [15.6 Function Naming](#156-function-naming)
 
 ## 1. The `<script>` Tag
 
@@ -818,3 +825,89 @@ The `switch` statement provides a more descriptive way to compare a value agains
   ```
 
 The `switch` statement is useful for handling multiple conditions in a clean and organized manner, especially when dealing with multiple potential values for a single variable.
+
+## 15. Functions
+
+Functions are the main building blocks of a program, allowing code to be reused and organized efficiently.
+
+### 15.1 Function Declaration
+
+- **Syntax**: Functions are declared using the `function` keyword, followed by the function name, parameters in parentheses, and the function body in curly braces.
+
+  ```javascript
+  function showMessage() {
+    alert("Hello everyone!");
+  }
+  ```
+
+- **Calling a Function**: Execute the function by its name followed by parentheses.
+  ```javascript
+  showMessage();
+  ```
+
+### 15.2 Local and Outer Variables
+
+- **Local Variables**: Declared inside a function and accessible only within that function.
+
+  ```javascript
+  function showMessage() {
+    let message = "Hello, I'm JavaScript!";
+    alert(message);
+  }
+  ```
+
+- **Outer Variables**: Functions can access and modify variables declared outside of them.
+
+  ```javascript
+  let userName = "John";
+
+  function showMessage() {
+    let message = "Hello, " + userName;
+    alert(message);
+  }
+  ```
+
+### 15.3 Parameters and Arguments
+
+- **Parameters**: Variables listed in the function declaration.
+- **Arguments**: Values passed to the function when called.
+
+  ```javascript
+  function showMessage(from, text) {
+    alert(from + ": " + text);
+  }
+
+  showMessage("Ann", "Hello!");
+  ```
+
+### 15.4 Default Values
+
+- **Default Parameters**: Provide default values for parameters if no argument is passed.
+
+  ```javascript
+  function showMessage(from, text = "no text given") {
+    alert(from + ": " + text);
+  }
+
+  showMessage("Ann");
+  ```
+
+### 15.5 Returning a Value
+
+- **Return Statement**: Functions can return a value using the `return` keyword.
+
+  ```javascript
+  function sum(a, b) {
+    return a + b;
+  }
+
+  let result = sum(1, 2);
+  alert(result); // 3
+  ```
+
+### 15.6 Function Naming
+
+- **Descriptive Names**: Function names should clearly describe their action, often using verbs.
+- **Common Prefixes**: Use prefixes like `get...`, `show...`, `check...` to indicate the function's purpose.
+
+Functions are essential for structuring code, reducing repetition, and improving readability and maintainability.
