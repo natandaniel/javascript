@@ -80,6 +80,10 @@
     - [16.2 Functions as Values](#162-functions-as-values)
     - [16.3 Callback Functions](#163-callback-functions)
     - [16.4 Function Expression vs Function Declaration](#164-function-expression-vs-function-declaration)
+17. [Arrow Functions](#17-arrow-functions)
+    - [17.1 Basic Syntax](#171-basic-syntax)
+    - [17.2 Multiline Arrow Functions](#172-multiline-arrow-functions)
+    - [17.3 Usage](#173-usage)
 
 ## 1. The `<script>` Tag
 
@@ -981,3 +985,49 @@ In JavaScript, functions can be created using function expressions, which allow 
 - **Block Scope**: In strict mode, function declarations inside blocks are only visible within those blocks.
 
 Function expressions provide flexibility in defining functions, especially when functions need to be created conditionally or passed as arguments.
+
+## 17. Arrow Functions
+
+Arrow functions provide a concise syntax for writing functions in JavaScript, often used for simple operations.
+
+### 17.1 Basic Syntax
+
+- **Syntax**: Arrow functions are defined using the `=>` syntax.
+
+  ```javascript
+  let sum = (a, b) => a + b;
+  ```
+
+- **Single Argument**: Parentheses can be omitted if there is only one argument.
+
+  ```javascript
+  let double = (n) => n * 2;
+  ```
+
+- **No Arguments**: Use empty parentheses if there are no arguments.
+  ```javascript
+  let sayHi = () => alert("Hello!");
+  ```
+
+### 17.2 Multiline Arrow Functions
+
+- **Syntax**: For functions with multiple statements, use curly braces and an explicit `return`.
+  ```javascript
+  let sum = (a, b) => {
+    let result = a + b;
+    return result;
+  };
+  ```
+
+### 17.3 Usage
+
+- **One-liners**: Ideal for simple one-line functions and callbacks.
+  ```javascript
+  ask(
+    "Do you agree?",
+    () => alert("You agreed."),
+    () => alert("You canceled the execution.")
+  );
+  ```
+
+Arrow functions are particularly useful for short, simple functions and are often used in functional programming patterns and callbacks.
