@@ -58,6 +58,11 @@
     - [12.1 Basic Usage](#121-basic-usage)
     - [12.2 Comparison with `||`](#122-comparison-with-)
     - [12.3 Precedence and Usage](#123-precedence-and-usage)
+13. [Loops: `while` and `for`](#13-loops-while-and-for)
+    - [13.1 The `while` Loop](#131-the-while-loop)
+    - [13.2 The `do...while` Loop](#132-the-dowhile-loop)
+    - [13.3 The `for` Loop](#133-the-for-loop)
+    - [13.4 Breaking and Continuing](#134-breaking-and-continuing)
 
 ## 1. The `<script>` Tag
 
@@ -634,3 +639,83 @@ The nullish coalescing operator `??` is used to provide a default value when dea
   ```
 
 The nullish coalescing operator is particularly useful for setting default values when dealing with potentially `null` or `undefined` variables.
+
+## 13. Loops: `while` and `for`
+
+Loops allow us to repeat actions multiple times, which is essential for tasks like iterating over arrays or executing code repeatedly.
+
+### 13.1 The `while` Loop
+
+- **Syntax**: Repeats a block of code as long as a condition is truthy.
+
+  ```javascript
+  while (condition) {
+    // loop body
+  }
+  ```
+
+- **Example**: Outputs numbers from 0 to 2.
+  ```javascript
+  let i = 0;
+  while (i < 3) {
+    alert(i);
+    i++;
+  }
+  ```
+
+### 13.2 The `do...while` Loop
+
+- **Syntax**: Executes the loop body at least once, then repeats while the condition is truthy.
+
+  ```javascript
+  do {
+    // loop body
+  } while (condition);
+  ```
+
+- **Example**: Outputs numbers from 0 to 2.
+  ```javascript
+  let i = 0;
+  do {
+    alert(i);
+    i++;
+  } while (i < 3);
+  ```
+
+### 13.3 The `for` Loop
+
+- **Syntax**: A more complex loop that includes initialization, condition, and increment expressions.
+
+  ```javascript
+  for (begin; condition; step) {
+    // loop body
+  }
+  ```
+
+- **Example**: Outputs numbers from 0 to 2.
+  ```javascript
+  for (let i = 0; i < 3; i++) {
+    alert(i);
+  }
+  ```
+
+### 13.4 Breaking and Continuing
+
+- **`break`**: Exits the loop immediately.
+
+  ```javascript
+  while (true) {
+    let value = prompt("Enter a number", "");
+    if (!value) break;
+  }
+  ```
+
+- **`continue`**: Skips the current iteration and proceeds to the next one.
+  ```javascript
+  for (let i = 0; i < 5; i++) {
+    if (i % 2 === 0) continue;
+    alert(i); // 1, 3
+  }
+  ```
+
+These loop constructs are fundamental for controlling the flow of execution in JavaScript, allowing for efficient and flexible iteration over data.
