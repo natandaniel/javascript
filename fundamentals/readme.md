@@ -50,6 +50,14 @@
     - [10.3 Several Conditions: `else if`](#103-several-conditions-else-if)
     - [10.4 Conditional Operator `?`](#104-conditional-operator-)
     - [10.5 Non-traditional Use of `?`](#105-non-traditional-use-of-)
+11. [Logical Operators](#11-logical-operators)
+    - [11.1 OR (`||`)](#111-or-)
+    - [11.2 AND (`&&`)](#112-and-)
+    - [11.3 NOT (`!`)](#113-not-)
+12. [Nullish Coalescing Operator (`??`)](#12-nullish-coalescing-operator-)
+    - [12.1 Basic Usage](#121-basic-usage)
+    - [12.2 Comparison with `||`](#122-comparison-with-)
+    - [12.3 Precedence and Usage](#123-precedence-and-usage)
 
 ## 1. The `<script>` Tag
 
@@ -584,3 +592,45 @@ JavaScript provides several logical operators that can be used with values of an
   ```
 
 These logical operators are essential for controlling the flow of logic in JavaScript, allowing for complex conditions and decision-making processes.
+
+## 12. Nullish Coalescing Operator (`??`)
+
+The nullish coalescing operator `??` is used to provide a default value when dealing with `null` or `undefined`.
+
+### 12.1 Basic Usage
+
+- **Syntax**: Returns the first defined value (not `null` or `undefined`).
+
+  ```javascript
+  let result = a ?? b;
+  ```
+
+- **Example**: Provides a default value if `user` is `null` or `undefined`.
+  ```javascript
+  let user;
+  alert(user ?? "Anonymous"); // "Anonymous"
+  ```
+
+### 12.2 Comparison with `||`
+
+- **Difference**: `||` returns the first truthy value, while `??` returns the first defined value.
+  ```javascript
+  let height = 0;
+  alert(height || 100); // 100 (0 is falsy)
+  alert(height ?? 100); // 0 (0 is defined)
+  ```
+
+### 12.3 Precedence and Usage
+
+- **Precedence**: Similar to `||`, but requires parentheses when used with `&&` or `||`.
+
+  ```javascript
+  let area = (height ?? 100) * (width ?? 50);
+  ```
+
+- **Restrictions**: Cannot be used directly with `&&` or `||` without parentheses.
+  ```javascript
+  let x = (1 && 2) ?? 3; // Valid
+  ```
+
+The nullish coalescing operator is particularly useful for setting default values when dealing with potentially `null` or `undefined` variables.
