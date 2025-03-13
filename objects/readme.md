@@ -47,6 +47,13 @@
    - [7.3 Global Symbols](#73-global-symbols)
    - [7.4 System Symbols](#74-system-symbols)
    - [7.5 Summary](#75-summary)
+8. [Object to Primitive Conversion](#8-object-to-primitive-conversion)
+   - [8.1 Conversion Rules](#81-conversion-rules)
+   - [8.2 Hints](#82-hints)
+   - [8.3 Symbol.toPrimitive](#83-symboltoprimitive)
+   - [8.4 toString/valueOf](#84-tostringvalueof)
+   - [8.5 Further Conversions](#85-further-conversions)
+   - [8.6 Summary](#86-summary)
 
 ## 1. Objects: The Basics
 
@@ -668,3 +675,91 @@ JavaScript includes several built-in symbols used to alter object behaviors, suc
 - System symbols enable customization of object behaviors.
 
 Symbols are a powerful feature in JavaScript, providing unique identifiers and enabling advanced object manipulation.
+
+## 8. Object to Primitive Conversion
+
+JavaScript automatically converts objects to primitive values when necessary, such as during mathematical operations or when using `alert`.
+
+### 8.1 Conversion Rules
+
+Objects can be converted to primitives in two main ways: numeric and string conversions. There is no boolean conversion for objects, as all objects are `true` in a boolean context.
+
+- **Numeric Conversion**: Occurs during mathematical operations.
+- **String Conversion**: Occurs when objects are used in a context expecting a string, such as `alert`.
+
+### 8.2 Hints
+
+JavaScript uses "hints" to determine the type of conversion:
+
+- **"string"**: For operations expecting a string, like `alert(obj)`.
+- **"number"**: For mathematical operations.
+- **"default"**: Used when the operator is unsure, such as with the `+` operator.
+
+### 8.3 Symbol.toPrimitive
+
+The `Symbol.toPrimitive` method can be defined to customize object-to-primitive conversion:
+
+```javascript
+let user = {
+  name: "John",
+  money: 1000,
+
+  [Symbol.toPrimitive](hint) {
+    return hint === "string" ? `{name: "${this.name}"}` : this.money;
+  },
+};
+
+alert(user); // {name: "John"}
+alert(+user); // 1000
+alert(user + 500); // 1500
+```
+
+### 8.4 toString/valueOf
+
+If `Symbol.toPrimitive` is not defined, JavaScript uses `toString` and `valueOf`:
+
+- **For "string" hint**: `toString` is called first.
+- **For "number" or "default" hint**: `valueOf` is called first.
+
+```javascript
+let user = {
+  name: "John",
+  money: 1000,
+
+  toString() {
+    return `{name: "${this.name}"}`;
+  },
+
+  valueOf() {
+    return this.money;
+  },
+};
+
+alert(user); // {name: "John"}
+alert(+user); // 1000
+alert(user + 500); // 1500
+```
+
+### 8.5 Further Conversions
+
+Operators and functions may perform additional conversions:
+
+```javascript
+let obj = {
+  toString() {
+    return "2";
+  },
+};
+
+alert(obj * 2); // 4
+alert(obj + 2); // "22"
+```
+
+### 8.6 Summary
+
+- Objects are converted to primitives using hints: "string", "number", and "default".
+- `Symbol.toPrimitive` can be used to define custom conversion logic.
+- `toString` and `valueOf` provide alternative methods for conversion.
+- Conversions must return a primitive value.
+
+For more details, refer to the [Object to Primitive Conversion](https://javascript.info/object-toprimitive) tutorial.
