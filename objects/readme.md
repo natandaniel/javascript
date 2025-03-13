@@ -17,6 +17,12 @@
    - [2.2 Cloning and Merging, `Object.assign`](#22-cloning-and-merging-objectassign)
    - [2.3 Deep Cloning](#23-deep-cloning)
    - [2.4 Summary](#24-summary)
+3. [Garbage Collection](#3-garbage-collection)
+   - [3.1 Reachability](#31-reachability)
+   - [3.2 Simple Examples](#32-simple-examples)
+   - [3.3 Interlinked Objects](#33-interlinked-objects)
+   - [3.4 Internal Algorithms](#34-internal-algorithms)
+   - [3.5 Summary](#35-summary)
 
 ## 1. Objects: The Basics
 
@@ -264,3 +270,102 @@ Copying objects in JavaScript can be done in several ways:
 - **Deep cloning with `structuredClone`**: Creates a completely new object with all nested properties copied.
 
 Choose the method that best fits your needs based on the complexity of the objects you're working with.
+
+## 3. Garbage Collection
+
+### 3.1 Reachability
+
+The main concept of memory management in JavaScript is _reachability_. Reachable values are those that are accessible or usable somehow and are guaranteed to be stored in memory.
+
+1. **Roots**: These are inherently reachable values, such as:
+
+   - The currently executing function, its local variables, and parameters.
+   - Other functions on the current chain of nested calls, their local variables, and parameters.
+   - Global variables.
+
+2. **Reference Chains**: Any other value is considered reachable if it's reachable from a root by a reference or by a chain of references.
+
+The garbage collector monitors all objects and removes those that have become unreachable.
+
+### 3.2 Simple Examples
+
+Consider the following example:
+
+```javascript
+let user = {
+  name: "John",
+};
+
+user = null;
+```
+
+Here, the object `{name: "John"}` becomes unreachable when `user` is set to `null`, allowing the garbage collector to remove it.
+
+If multiple references exist:
+
+```javascript
+let user = {
+  name: "John",
+};
+
+let admin = user;
+
+user = null;
+```
+
+The object remains reachable through `admin`.
+
+### 3.3 Interlinked Objects
+
+Complex structures can be created with interlinked objects:
+
+```javascript
+function marry(man, woman) {
+  woman.husband = man;
+  man.wife = woman;
+
+  return {
+    father: man,
+    mother: woman,
+  };
+}
+
+let family = marry(
+  {
+    name: "John",
+  },
+  {
+    name: "Ann",
+  }
+);
+```
+
+If references are removed:
+
+```javascript
+delete family.father;
+delete family.mother.husband;
+```
+
+John becomes unreachable and is removed from memory.
+
+### 3.4 Internal Algorithms
+
+The basic garbage collection algorithm is called "mark-and-sweep":
+
+- The garbage collector marks roots and all reachable references.
+- Unmarked objects are considered unreachable and are removed.
+
+Optimizations include:
+
+- **Generational collection**: Objects are split into "new" and "old" sets.
+- **Incremental collection**: The object set is split into parts for collection.
+- **Idle-time collection**: Runs when the CPU is idle.
+
+### 3.5 Summary
+
+- Garbage collection is automatic.
+- Objects are retained in memory while they are reachable.
+- Interlinked objects can become unreachable as a whole.
+
+Modern engines implement advanced algorithms for garbage collection, ensuring efficient memory management.
