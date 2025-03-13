@@ -23,6 +23,24 @@
    - [3.3 Interlinked Objects](#33-interlinked-objects)
    - [3.4 Internal Algorithms](#34-internal-algorithms)
    - [3.5 Summary](#35-summary)
+4. [Object Methods and "this"](#4-object-methods-this)
+   - [4.1 Object Methods](#41-object-methods)
+   - [4.2 "this" in Methods](#42-this-in-methods)
+   - [4.3 "this" is Not Bound](#43-this-is-not-bound)
+   - [4.4 Arrow Functions](#44-arrow-functions)
+   - [4.5 Summary](#45-summary)
+5. [Constructor Functions and the `new` Operator](#5-constructor-functions-and-the-new-operator)
+   - [5.1 Constructor Function](#51-constructor-function)
+   - [5.2 Constructor Mode Test: `new.target`](#52-constructor-mode-test-newtarget)
+   - [5.3 Return from Constructors](#53-return-from-constructors)
+   - [5.4 Methods in Constructor](#54-methods-in-constructor)
+   - [5.5 Summary](#55-summary)
+6. [Optional Chaining](#6-optional-chaining)
+   - [6.1 The "Non-Existing Property" Problem](#61-the-non-existing-property-problem)
+   - [6.2 Optional Chaining Syntax](#62-optional-chaining-syntax)
+   - [6.3 Short-Circuiting](#63-short-circuiting)
+   - [6.4 Other Variants: ?.(), ?.\[\]](#64-other-variants)
+   - [6.5 Summary](#65-summary)
 
 ## 1. Objects: The Basics
 
@@ -369,3 +387,230 @@ Optimizations include:
 - Interlinked objects can become unreachable as a whole.
 
 Modern engines implement advanced algorithms for garbage collection, ensuring efficient memory management.
+
+## 4. Object Methods and "this"
+
+### 4.1 Object Methods
+
+Objects are usually created to represent entities of the real world, like users, orders, and so on. Actions are represented in JavaScript by functions in properties.
+
+For example, let's teach the `user` to say hello:
+
+```javascript
+let user = {
+  name: "John",
+  age: 30,
+};
+
+user.sayHi = function () {
+  alert("Hello!");
+};
+
+user.sayHi(); // Hello!
+```
+
+A function that is a property of an object is called its _method_. In the example above, `sayHi` is a method of the `user` object.
+
+### 4.2 "this" in Methods
+
+It's common for an object method to access the information stored in the object to perform its task. This is done using the `this` keyword, which refers to the object "before the dot" used to call the method.
+
+```javascript
+let user = {
+  name: "John",
+  age: 30,
+
+  sayHi() {
+    alert(this.name);
+  },
+};
+
+user.sayHi(); // John
+```
+
+### 4.3 "this" is Not Bound
+
+In JavaScript, `this` is not bound to the function itself but is determined at the time of the call. This means `this` can refer to different objects depending on how the function is called.
+
+```javascript
+function sayHi() {
+  alert(this.name);
+}
+
+let user = { name: "John" };
+let admin = { name: "Admin" };
+
+user.sayHi = sayHi;
+admin.sayHi = sayHi;
+
+user.sayHi(); // John
+admin.sayHi(); // Admin
+```
+
+### 4.4 Arrow Functions
+
+Arrow functions are special: they don't have their "own" `this`. If we reference `this` from such a function, it's taken from the outer context:
+
+```javascript
+let user = {
+  name: "John",
+  sayHi() {
+    let arrow = () => alert(this.name);
+    arrow();
+  },
+};
+
+user.sayHi(); // John
+```
+
+### 4.5 Summary
+
+- Objects can have methods, which are functions stored as object properties.
+- The `this` keyword in methods refers to the object "before the dot".
+- `this` is evaluated at run-time and is not bound to the function itself.
+- Arrow functions do not have their own `this` and inherit it from the outer function.
+
+Objects and their methods are central to JavaScript's object-oriented programming capabilities, allowing for encapsulation and organization of code around entities and their behaviors.
+
+## 5. Constructor Functions and the `new` Operator
+
+### 5.1 Constructor Function
+
+Constructor functions are regular functions used to create multiple similar objects. They are named with a capital letter and should be executed with the `new` operator.
+
+```javascript
+function User(name) {
+  this.name = name;
+  this.isAdmin = false;
+}
+
+let user = new User("Jack");
+
+alert(user.name); // Jack
+alert(user.isAdmin); // false
+```
+
+When a function is executed with `new`, it creates a new object, assigns it to `this`, and returns `this`.
+
+### 5.2 Constructor Mode Test: `new.target`
+
+Inside a function, `new.target` can be used to check if it was called with `new`. It is `undefined` for regular calls and equals the function if called with `new`.
+
+```javascript
+function User() {
+  alert(new.target);
+}
+
+User(); // undefined
+new User(); // function User { ... }
+```
+
+### 5.3 Return from Constructors
+
+Constructors usually don't have a `return` statement. If `return` is used with an object, that object is returned instead of `this`. If used with a primitive, it's ignored.
+
+```javascript
+function BigUser() {
+  this.name = "John";
+  return { name: "Godzilla" };
+}
+
+alert(new BigUser().name); // Godzilla
+```
+
+### 5.4 Methods in Constructor
+
+Constructor functions can also define methods:
+
+```javascript
+function User(name) {
+  this.name = name;
+  this.sayHi = function () {
+    alert("My name is: " + this.name);
+  };
+}
+
+let john = new User("John");
+john.sayHi(); // My name is: John
+```
+
+### 5.5 Summary
+
+- Constructor functions are used to create multiple similar objects.
+- They should be called with `new`, which creates a new object and assigns it to `this`.
+- Constructors can define properties and methods for the objects they create.
+
+Constructor functions provide a flexible way to create objects and are a fundamental part of JavaScript's object-oriented capabilities.
+
+## 6. Optional Chaining
+
+### 6.1 The "Non-Existing Property" Problem
+
+Accessing nested object properties can lead to errors if an intermediate property doesn't exist. For example:
+
+```javascript
+let user = {}; // a user without "address" property
+
+alert(user.address.street); // Error!
+```
+
+### 6.2 Optional Chaining Syntax
+
+The optional chaining `?.` allows safe access to nested properties, returning `undefined` if an intermediate property doesn't exist:
+
+```javascript
+let user = {}; // user has no address
+
+alert(user?.address?.street); // undefined (no error)
+```
+
+This syntax can also be used with methods and array-like access:
+
+```javascript
+let html = document.querySelector(".elem")?.innerHTML; // undefined if no element
+```
+
+### 6.3 Short-Circuiting
+
+The `?.` operator stops evaluation if the value before it is `undefined` or `null`, preventing further errors:
+
+```javascript
+let user = null;
+let x = 0;
+
+user?.sayHi(x++); // no "user", so x++ is not executed
+
+alert(x); // 0
+```
+
+### 6.4 Other Variants: ?.(), ?.\[\]
+
+Optional chaining can be used with function calls and bracket notation:
+
+```javascript
+let userAdmin = {
+  admin() {
+    alert("I am admin");
+  },
+};
+
+let userGuest = {};
+
+userAdmin.admin?.(); // I am admin
+userGuest.admin?.(); // nothing happens
+
+let key = "firstName";
+let user1 = { firstName: "John" };
+let user2 = null;
+
+alert(user1?.[key]); // John
+alert(user2?.[key]); // undefined
+```
+
+### 6.5 Summary
+
+- Optional chaining `?.` provides a safe way to access nested properties.
+- It returns `undefined` if the value before `?.` is `null` or `undefined`.
+- Use `?.` carefully to avoid hiding programming errors.
+
+Optional chaining is a powerful feature for handling optional properties in JavaScript, making code cleaner and more robust.
