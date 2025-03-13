@@ -13,7 +13,21 @@ This document explores the methods available for JavaScript primitives, illustra
    - [2.2 toString(base)](#22-tostringbase)
    - [2.3 Rounding](#23-rounding)
    - [2.4 Imprecise Calculations](#24-imprecise-calculations)
-   - [2.5 Summary](#25-summary)
+   - [2.5 Tests: isFinite and isNaN](#25-tests-isfinite-and-isnan)
+   - [2.6 parseInt and parseFloat](#26-parseint-and-parsefloat)
+   - [2.7 Other Math Functions](#27-other-math-functions)
+   - [2.8 Summary](#28-summary)
+3. [Strings](#3-strings)
+   - [3.1 Quotes](#31-quotes)
+   - [3.2 Special Characters](#32-special-characters)
+   - [3.3 String Length](#33-string-length)
+   - [3.4 Accessing Characters](#34-accessing-characters)
+   - [3.5 Strings are Immutable](#35-strings-are-immutable)
+   - [3.6 Changing the Case](#36-changing-the-case)
+   - [3.7 Searching for a Substring](#37-searching-for-a-substring)
+   - [3.8 Getting a Substring](#38-getting-a-substring)
+   - [3.9 Comparing Strings](#39-comparing-strings)
+   - [3.10 Summary](#310-summary)
 
 ## 1. Methods of Primitives
 
@@ -134,11 +148,178 @@ alert(0.1 + 0.2 == 0.3); // false
 alert((0.1 + 0.2).toFixed(20)); // "0.30000000000000004441"
 ```
 
-### 2.5 Summary
+### 2.5 Tests: isFinite and isNaN
+
+JavaScript provides functions to test for finite numbers and NaN (Not-a-Number):
+
+- **isFinite(value)**: Converts the argument to a number and returns `true` if it is a regular number, not `NaN/Infinity/-Infinity`.
+
+  ```javascript
+  alert(isFinite("15")); // true
+  alert(isFinite("str")); // false, because NaN
+  alert(isFinite(Infinity)); // false
+  ```
+
+- **isNaN(value)**: Converts the argument to a number and tests if it is `NaN`.
+
+  ```javascript
+  alert(isNaN(NaN)); // true
+  alert(isNaN("str")); // true, because NaN
+  ```
+
+### 2.6 parseInt and parseFloat
+
+These functions convert a string to a number:
+
+- **parseInt(str, radix)**: Parses a string and returns an integer of the specified radix (base).
+
+  ```javascript
+  alert(parseInt("100px")); // 100
+  alert(parseInt("0xff", 16)); // 255
+  ```
+
+- **parseFloat(str)**: Parses a string and returns a floating-point number.
+
+  ```javascript
+  alert(parseFloat("12.5em")); // 12.5
+  alert(parseFloat("12.3.4")); // 12.3
+  ```
+
+### 2.7 Other Math Functions
+
+JavaScript provides a `Math` object with various mathematical functions and constants:
+
+- **Math.random()**: Returns a random number between 0 and 1.
+
+  ```javascript
+  alert(Math.random()); // e.g., 0.123456789
+  ```
+
+- **Math.max(a, b, c...)** / **Math.min(a, b, c...)**: Returns the maximum/minimum value.
+
+  ```javascript
+  alert(Math.max(3, 5, -10, 0, 1)); // 5
+  alert(Math.min(1, 2)); // 1
+  ```
+
+- **Math.pow(n, power)**: Returns `n` raised to the given power.
+
+  ```javascript
+  alert(Math.pow(2, 10)); // 1024
+  ```
+
+### 2.8 Summary
 
 - JavaScript numbers are double precision floating point.
 - Numbers can be represented in various formats for convenience.
 - Rounding methods are available for different rounding needs.
 - Precision errors can occur due to the binary representation of numbers.
+- Functions like `isFinite`, `isNaN`, `parseInt`, and `parseFloat` help in number parsing and validation.
+- The `Math` object provides additional mathematical functions and constants.
 
 For more details, refer to the [Numbers](https://javascript.info/number) tutorial.
+
+## 3. Strings
+
+In JavaScript, strings are used to store and manipulate textual data. They are always encoded in UTF-16.
+
+### 3.1 Quotes
+
+Strings can be enclosed in single quotes, double quotes, or backticks:
+
+```javascript
+let single = "single-quoted";
+let double = "double-quoted";
+let backticks = `backticks`;
+```
+
+Backticks allow for embedding expressions using `${…}` and can span multiple lines.
+
+### 3.2 Special Characters
+
+Special characters in strings include:
+
+- `\n`: New line
+- `\t`: Tab
+- `\\`: Backslash
+- `\'`, `\"`, `` \` ``: Escaped quotes
+
+Example:
+
+```javascript
+let guestList = "Guests:\n * John\n * Pete\n * Mary";
+alert(guestList);
+```
+
+### 3.3 String Length
+
+The `length` property returns the length of a string:
+
+```javascript
+alert(`My\n`.length); // 3
+```
+
+### 3.4 Accessing Characters
+
+Characters can be accessed using square brackets or the `at` method:
+
+```javascript
+let str = `Hello`;
+alert(str[0]); // H
+alert(str.at(-1)); // o
+```
+
+### 3.5 Strings are Immutable
+
+Strings cannot be changed in place. To modify a string, create a new one:
+
+```javascript
+let str = "Hi";
+str = "h" + str[1];
+alert(str); // hi
+```
+
+### 3.6 Changing the Case
+
+Use `toLowerCase()` and `toUpperCase()` to change the case of a string:
+
+```javascript
+alert("Interface".toUpperCase()); // INTERFACE
+alert("Interface".toLowerCase()); // interface
+```
+
+### 3.7 Searching for a Substring
+
+Use `indexOf`, `includes`, `startsWith`, and `endsWith` to search for substrings:
+
+```javascript
+let str = "Widget with id";
+alert(str.indexOf("Widget")); // 0
+alert(str.includes("id")); // true
+```
+
+### 3.8 Getting a Substring
+
+Use `slice`, `substring`, or `substr` to extract parts of a string:
+
+```javascript
+let str = "stringify";
+alert(str.slice(0, 5)); // "strin"
+```
+
+### 3.9 Comparing Strings
+
+Strings are compared by character codes. Use `localeCompare` for language-specific comparisons:
+
+```javascript
+alert("Österreich".localeCompare("Zealand")); // -1
+```
+
+### 3.10 Summary
+
+- Strings can be enclosed in single, double, or backticks.
+- Special characters allow for formatting within strings.
+- Strings are immutable; create new strings to modify them.
+- Use various methods to search, extract, and compare strings.
+
+For more details, refer to the [Strings](https://javascript.info/string) tutorial.
