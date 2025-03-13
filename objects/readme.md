@@ -12,6 +12,11 @@
    - [1.7 Property Existence Test, "in" Operator](#17-property-existence-test-in-operator)
    - [1.8 The "for..in" Loop](#18-the-forin-loop)
    - [1.9 Summary](#19-summary)
+2. [Copying Objects](#2-copying-objects)
+   - [2.1 Objects are Copied by Reference](#21-objects-are-copied-by-reference)
+   - [2.2 Cloning and Merging, `Object.assign`](#22-cloning-and-merging-objectassign)
+   - [2.3 Deep Cloning](#23-deep-cloning)
+   - [2.4 Summary](#24-summary)
 
 ## 1. Objects: The Basics
 
@@ -158,3 +163,104 @@ Objects in JavaScript are collections of key-value pairs with special features:
 - Use `for (let key in obj)` to iterate over properties.
 
 Objects are a fundamental part of JavaScript, serving as the basis for more complex data structures like arrays, dates, and errors. They are versatile and powerful, allowing for dynamic property access and manipulation.
+
+## 2. Copying Objects
+
+### 2.1 Objects are Copied by Reference
+
+One of the fundamental differences between objects and primitives in JavaScript is that objects are stored and copied "by reference", whereas primitive values like strings, numbers, and booleans are always copied "as a whole value".
+
+For example, when you copy a primitive value:
+
+```javascript
+let message = "Hello!";
+let phrase = message;
+```
+
+Both `message` and `phrase` store the string `"Hello!"` independently.
+
+However, objects behave differently:
+
+```javascript
+let user = {
+  name: "John",
+};
+
+let admin = user; // copy the reference
+
+admin.name = "Pete"; // changed by the "admin" reference
+
+alert(user.name); // 'Pete', changes are seen from the "user" reference
+```
+
+Here, `user` and `admin` reference the same object, so changes via one reference are visible through the other.
+
+### 2.2 Cloning and Merging, `Object.assign`
+
+To duplicate an object, you can create a new object and replicate the structure of the existing one:
+
+```javascript
+let user = {
+  name: "John",
+  age: 30,
+};
+
+let clone = {}; // the new empty object
+
+// let's copy all user properties into it
+for (let key in user) {
+  clone[key] = user[key];
+}
+
+clone.name = "Pete"; // changed the data in it
+
+alert(user.name); // still John in the original object
+```
+
+Alternatively, use `Object.assign` for a shallow copy:
+
+```javascript
+let user = { name: "John" };
+
+let permissions1 = { canView: true };
+let permissions2 = { canEdit: true };
+
+// copies all properties from permissions1 and permissions2 into user
+Object.assign(user, permissions1, permissions2);
+
+alert(user.name); // John
+alert(user.canView); // true
+alert(user.canEdit); // true
+```
+
+### 2.3 Deep Cloning
+
+For deep cloning, where nested objects are also copied, use `structuredClone`:
+
+```javascript
+let user = {
+  name: "John",
+  sizes: {
+    height: 182,
+    width: 50,
+  },
+};
+
+let clone = structuredClone(user);
+
+alert(user.sizes === clone.sizes); // false, different objects
+```
+
+The `structuredClone` method can clone most data types, such as objects, arrays, and primitive values. It can also handle circular references.
+
+For more complex cases, consider using libraries like `_.cloneDeep` from lodash.
+
+### 2.4 Summary
+
+Copying objects in JavaScript can be done in several ways:
+
+- **Objects are copied by reference**: Changes to the original object are reflected in all copies.
+- **Shallow copying with `Object.assign`**: Copies only the top-level properties.
+- **Deep cloning with `structuredClone`**: Creates a completely new object with all nested properties copied.
+
+Choose the method that best fits your needs based on the complexity of the objects you're working with.
