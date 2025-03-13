@@ -41,6 +41,12 @@
    - [6.3 Short-Circuiting](#63-short-circuiting)
    - [6.4 Other Variants: ?.(), ?.\[\]](#64-other-variants)
    - [6.5 Summary](#65-summary)
+7. [Symbols](#7-symbols)
+   - [7.1 Symbols as Unique Identifiers](#71-symbols-as-unique-identifiers)
+   - [7.2 "Hidden" Properties](#72-hidden-properties)
+   - [7.3 Global Symbols](#73-global-symbols)
+   - [7.4 System Symbols](#74-system-symbols)
+   - [7.5 Summary](#75-summary)
 
 ## 1. Objects: The Basics
 
@@ -614,3 +620,51 @@ alert(user2?.[key]); // undefined
 - Use `?.` carefully to avoid hiding programming errors.
 
 Optional chaining is a powerful feature for handling optional properties in JavaScript, making code cleaner and more robust.
+
+## 7. Symbols
+
+### 7.1 Symbols as Unique Identifiers
+
+Symbols are a primitive type used to create unique identifiers for object properties. They are created using `Symbol()`:
+
+```javascript
+let id = Symbol("id");
+```
+
+Symbols are guaranteed to be unique, even if they have the same description.
+
+### 7.2 "Hidden" Properties
+
+Symbols can be used to create properties that are not accessible through normal means, providing a way to add "hidden" properties to objects:
+
+```javascript
+let user = { name: "John" };
+let id = Symbol("id");
+
+user[id] = 1;
+alert(user[id]); // 1
+```
+
+### 7.3 Global Symbols
+
+Symbols can be registered globally using `Symbol.for(key)`, allowing the same symbol to be accessed across different parts of an application:
+
+```javascript
+let id = Symbol.for("id");
+let idAgain = Symbol.for("id");
+
+alert(id === idAgain); // true
+```
+
+### 7.4 System Symbols
+
+JavaScript includes several built-in symbols used to alter object behaviors, such as `Symbol.iterator` and `Symbol.toPrimitive`.
+
+### 7.5 Summary
+
+- Symbols are unique identifiers that can be used as object property keys.
+- They provide a way to add hidden properties to objects.
+- Global symbols allow for shared symbols across an application.
+- System symbols enable customization of object behaviors.
+
+Symbols are a powerful feature in JavaScript, providing unique identifiers and enabling advanced object manipulation.
