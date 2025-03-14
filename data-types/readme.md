@@ -28,6 +28,17 @@ This document explores the methods available for JavaScript primitives, illustra
    - [3.8 Getting a Substring](#38-getting-a-substring)
    - [3.9 Comparing Strings](#39-comparing-strings)
    - [3.10 Summary](#310-summary)
+4. [Strings](#4-strings)
+   - [4.1 Quotes](#41-quotes)
+   - [4.2 Special Characters](#42-special-characters)
+   - [4.3 String Length](#43-string-length)
+   - [4.4 Accessing Characters](#44-accessing-characters)
+   - [4.5 Strings are Immutable](#45-strings-are-immutable)
+   - [4.6 Changing the Case](#46-changing-the-case)
+   - [4.7 Searching for a Substring](#47-searching-for-a-substring)
+   - [4.8 Getting a Substring](#48-getting-a-substring)
+   - [4.9 Comparing Strings](#49-comparing-strings)
+   - [4.10 Summary](#410-summary)
 
 ## 1. Methods of Primitives
 
@@ -316,6 +327,111 @@ alert("Österreich".localeCompare("Zealand")); // -1
 ```
 
 ### 3.10 Summary
+
+- Strings can be enclosed in single, double, or backticks.
+- Special characters allow for formatting within strings.
+- Strings are immutable; create new strings to modify them.
+- Use various methods to search, extract, and compare strings.
+
+For more details, refer to the [Strings](https://javascript.info/string) tutorial.
+
+## 4. Strings
+
+In JavaScript, strings are used to store and manipulate textual data. They are always encoded in UTF-16.
+
+### 4.1 Quotes
+
+Strings can be enclosed in single quotes, double quotes, or backticks:
+
+```javascript
+let single = "single-quoted";
+let double = "double-quoted";
+let backticks = `backticks`;
+```
+
+Backticks allow for embedding expressions using `${…}` and can span multiple lines.
+
+### 4.2 Special Characters
+
+Special characters in strings include:
+
+- `\n`: New line
+- `\t`: Tab
+- `\\`: Backslash
+- `\'`, `\"`, `` \` ``: Escaped quotes
+
+Example:
+
+```javascript
+let guestList = "Guests:\n * John\n * Pete\n * Mary";
+alert(guestList);
+```
+
+### 4.3 String Length
+
+The `length` property returns the length of a string:
+
+```javascript
+alert(`My\n`.length); // 3
+```
+
+### 4.4 Accessing Characters
+
+Characters can be accessed using square brackets or the `at` method:
+
+```javascript
+let str = `Hello`;
+alert(str[0]); // H
+alert(str.at(-1)); // o
+```
+
+### 4.5 Strings are Immutable
+
+Strings cannot be changed in place. To modify a string, create a new one:
+
+```javascript
+let str = "Hi";
+str = "h" + str[1];
+alert(str); // hi
+```
+
+### 4.6 Changing the Case
+
+Use `toLowerCase()` and `toUpperCase()` to change the case of a string:
+
+```javascript
+alert("Interface".toUpperCase()); // INTERFACE
+alert("Interface".toLowerCase()); // interface
+```
+
+### 4.7 Searching for a Substring
+
+Use `indexOf`, `includes`, `startsWith`, and `endsWith` to search for substrings:
+
+```javascript
+let str = "Widget with id";
+alert(str.indexOf("Widget")); // 0
+alert(str.includes("id")); // true
+```
+
+### 4.8 Getting a Substring
+
+Use `slice`, `substring`, or `substr` to extract parts of a string:
+
+```javascript
+let str = "stringify";
+alert(str.slice(0, 5)); // "strin"
+```
+
+### 4.9 Comparing Strings
+
+Strings are compared by character codes. Use `localeCompare` for language-specific comparisons:
+
+```javascript
+alert("Österreich".localeCompare("Zealand")); // -1
+```
+
+### 4.10 Summary
 
 - Strings can be enclosed in single, double, or backticks.
 - Special characters allow for formatting within strings.
