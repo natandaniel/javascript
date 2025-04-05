@@ -1,14 +1,33 @@
 "use strict";
 
-let person = {
-  name: "Natan",
-  age: 20,
-  city: "São Paulo",
-  country: "Brazil",
-  isStudent: true,
-  sayHello: function () {
-    alert(`Hello, my name is ${this.name} and I'm ${this.age} years old.`);
-  },
-};
+class User {
+  #name = "Nat";
 
-person.sayHello();
+  constructor(name) {
+    this.#name = name;
+    this.age = 0;
+    this._surname = "Dan";
+  }
+
+  get name() {
+    return this.#name;
+  }
+
+  set name(value) {
+    this.#name = value;
+  }
+
+  getSurname() {
+    return this._surname;
+  }
+}
+
+class ExtendedUser extends User {
+  constructor(name, age) {
+    super(name);
+    this.age = age;
+
+    this.name = "John";
+  }
+  
+}
