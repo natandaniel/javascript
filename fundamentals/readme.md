@@ -381,7 +381,7 @@ JavaScript supports a variety of operators for performing calculations and opera
 - **Multiplication (`*`)**: Multiplies numbers.
 - **Division (`/`)**: Divides numbers.
 - **Remainder (`%`)**: Returns the remainder of a division.
-- **Exponentiation (`**`)\*\*: Raises a number to the power of another.
+- **Exponentiation (`**`)**: Raises a number to the power of another.
 
 ### 8.2 String Concatenation
 
