@@ -1,0 +1,13 @@
+<html>
+  <body>
+    <div id="app"></div>
+    <script>
+      const header = document.createElement("h1");
+      const headerContent = document.createTextNode(
+        "This header was dynamically added to the DOM."
+      );
+      header.appendChild(headerContent);
+      document.getElementById("app").appendChild(header);
+    </script>
+  </body>
+</html>
